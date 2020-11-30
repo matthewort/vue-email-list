@@ -8,13 +8,17 @@
 
 
 
-// var app = new Vue({
-//   el: '#app'
-// })
-
-
-axios.get('https://flynn.boolean.careers/exercises/api/random/mail') //fai partire questa richiesta col metodo get a questa url
-.then(function (response) { //se la richiesta va a buon fine allora esegui
-const result = response.data;
-console.log(result);
+var app = new Vue({
+  el: '#app',
+  data: {
+    mail: 0
+  },
+  mounted: function () {
+    axios.get('https://flynn.boolean.careers/exercises/api/random/mail') //fai partire questa richiesta col metodo get a questa url
+    .then((response) => { //se la richiesta va a buon fine allora esegui
+    const result = response.data.response; //con il data gli dico di darmi in maniera specifica solo il data, se togliessi il data mi darebbe anche tutte le altre informazioni che non mi interessa avere
+    this.mail = response.data.response;
+    console.log(result);
+    });
+  }
 });
